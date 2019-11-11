@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-reader">
-        Product List
+        {{pageTitle}}
     </div>
     <div class="card-body">
         <div class="row">
@@ -14,5 +14,43 @@
                 <h4>Filtered by: </h4>
             </div>
         </div>
+        <div class="table-responsive">
+            <table class="table"
+                *ngIf='products && products.length'>
+                <thead>
+                    <tr>
+                        <th>
+                            <button class="btn btn-primary">
+                                Show Image
+                            </button>
+                        </th>
+                        <th>Product</th>
+                        <th>Code</th>
+                        <th>Available</th>
+                        <th>Price</th>
+                        <th>5 Star Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Repeats each row of products in the list of products -->
+                    <!-- for of: iterates over content of object -->
+                    <!-- for in: iterates over properties (index) of object -->
+                    <tr *ngFor='let product of products'>
+                        <td>
+                            <img [src]='products.imageURL'
+                                [title]='products.productName'
+                                [style.width.px]='imageWidth'>
+                        </td>
+                        <!-- productName from JSON in prod-list.ts file -->
+                        <td>{{ product.productName }}</td>
+                        <td>{{ product.productCode }}</td>
+                        <td>{{ product.releaseDate }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.starRating }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
