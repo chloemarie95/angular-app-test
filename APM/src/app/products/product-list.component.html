@@ -20,8 +20,10 @@
                 <thead>
                     <tr>
                         <th>
-                            <button class="btn btn-primary">
-                                Show Image
+                            <button class="btn btn-primary"
+                                (click)='toggleImage()'>
+                                <!-- Show image is true, display Hide, otherwise display Show -->
+                                {{showImage ? 'Hide' : 'Show'}} Image
                             </button>
                         </th>
                         <th>Product</th>
@@ -37,9 +39,11 @@
                     <!-- for in: iterates over properties (index) of object -->
                     <tr *ngFor='let product of products'>
                         <td>
-                            <img [src]='products.imageURL'
-                                [title]='products.productName'
-                                [style.width.px]='imageWidth'>
+                            <img *ngIf='showImage' 
+                                [src]='product.imageURL'
+                                [title]='product.productName'
+                                [style.width.px]='imageWidth'
+                                [style.margin.px]='imageMargin'>
                         </td>
                         <!-- productName from JSON in prod-list.ts file -->
                         <td>{{ product.productName }}</td>
@@ -53,4 +57,6 @@
         </div>
     </div>
 </div>
+
+
 
